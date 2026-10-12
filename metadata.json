@@ -1,0 +1,8 @@
+{
+  "name": "Hand Synth",
+  "description": "Play music with your hands in front of your webcam: arpeggios on one side, chords on the other, with loops and WAV recording.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": []
+}
