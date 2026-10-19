@@ -175,19 +175,25 @@ const App: React.FC = () => {
         ? String(Math.max(1, Math.ceil(COUNTDOWN_S - elapsed / 1000)))
         : record.phase === 'recording' ? clock(elapsed) : null;
 
-    // Info: text laid over the grid, CLOSE to the right of it (or in the corner when there's no room)
+    // Info: text laid over the grid, CLOSE to the right of it. Where there's no room beside the grid (phones),
+    // CLOSE sits in the top-right corner on the same margins as INFO and REC, and the text starts below it.
+    const MARGIN_TOP = 12; // matches top-3 on INFO / REC
+    const MARGIN_SIDE = 16; // matches left-4 / right-4
     const grid = showInfo ? getGridRect() : null;
-    const textStyle: React.CSSProperties = grid
-        ? {
-            left: grid.x + grid.cell * 0.2, top: grid.y + grid.cell * 0.15, width: grid.w - grid.cell * 0.4, maxHeight: grid.h - grid.cell * 0.3,
-            fontSize: Math.max(14, Math.min(30, grid.cell * 0.3)),
-        }
-        : { left: 16, right: 16, top: 64, bottom: 16, fontSize: 18 };
     const closeSize = grid ? Math.max(56, grid.cell * 1.5) : 64;
     const closeFits = grid && !grid.portrait && grid.right + grid.cell * 0.25 + closeSize <= window.innerWidth - 8;
     const closeStyle: React.CSSProperties = closeFits
         ? { left: grid!.right + grid!.cell * 0.25, top: Math.max(8, grid!.y - grid!.cell * 0.6), width: closeSize, height: closeSize }
-        : { right: 12, top: 48, width: closeSize, height: closeSize };
+        : { right: MARGIN_SIDE, top: MARGIN_TOP, width: closeSize, height: closeSize };
+    const belowClose = MARGIN_TOP + closeSize + MARGIN_TOP;
+    const textTop = grid ? Math.max(grid.y + grid.cell * 0.15, closeFits ? 0 : belowClose) : belowClose;
+    const textStyle: React.CSSProperties = grid
+        ? {
+            left: grid.x + grid.cell * 0.2, top: textTop, width: grid.w - grid.cell * 0.4,
+            maxHeight: grid.y + grid.h - grid.cell * 0.15 - textTop,
+            fontSize: Math.max(14, Math.min(30, grid.cell * 0.3)),
+        }
+        : { left: MARGIN_SIDE, right: MARGIN_SIDE, top: textTop, bottom: MARGIN_SIDE, fontSize: 18 };
 
     return (
         <div className="relative w-screen h-screen bg-white flex justify-center items-center overflow-hidden font-['VT323',monospace]">
