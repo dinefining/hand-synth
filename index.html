@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hand Synth</title>
+    <meta name="description" content="Play music with your hands in front of your webcam: arpeggios on one side, chords on the other, with loops and WAV recording." />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Link previews (social sites need absolute URLs; these point at the GitHub Pages address) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Hand Synth" />
+    <meta property="og:description" content="Play music with your hands in front of your webcam: arpeggios on one side, chords on the other, with loops and WAV recording." />
+    <meta property="og:url" content="https://dinefining.github.io/hand-synth/" />
+    <meta property="og:image" content="https://dinefining.github.io/hand-synth/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hand Synth" />
+    <meta name="twitter:description" content="Play music with your hands in front of your webcam." />
+    <meta name="twitter:image" content="https://dinefining.github.io/hand-synth/og.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  <body class="bg-white">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
